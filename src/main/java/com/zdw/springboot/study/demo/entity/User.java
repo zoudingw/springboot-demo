@@ -1,6 +1,7 @@
 package com.zdw.springboot.study.demo.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Table(name = "t_user")
 @Entity
@@ -15,6 +16,17 @@ public class User {
 
     @Column(name = "addr")
     private  String addr;
+
+    @Column(name = "birthday")
+    private Date birthday;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
     public User() {
     }
