@@ -1,62 +1,34 @@
 package com.zdw.springboot.study.demo.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-@Table(name = "t_user")
+
 @Entity
+@Data
 public class User {
 
     @Id
     @GeneratedValue
     private Long userId;
 
-    @Column(name = "user_name")
+    @Column(unique = true)
     private String userName;
 
-    @Column(name = "addr")
+    private  String salt;
+
+    private byte state;
+
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name ="UserRole",joinColumns = {@JoinColumn(name = "userId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
+    private List<Role> roleList;
+
     private  String addr;
 
-    @Column(name = "birthday")
     private Date birthday;
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public User() {
-    }
-
-    public User(String userName, String addr) {
-        this.userName = userName;
-        this.addr = addr;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getAddr() {
-        return addr;
-    }
-
-    public void setAddr(String addr) {
-        this.addr = addr;
-    }
 }

@@ -1,6 +1,9 @@
 package com.zdw.springboot.study.demo.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Author:zoudw
@@ -10,18 +13,21 @@ import javax.persistence.*;
  *
  * @Copyright:2018, zoudw@szinfinova.com All Rights Reserved
  */
-@Table(name = "t_role")
 @Entity
+@Data
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue()
     private Integer roleId;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private List<User> users;
 
-    @Column(name = "role_name")
     private String roleName;
+
+    private String desc;
+
+    private Boolean avaliable;
 
     public Integer getRoleId() {
         return roleId;
@@ -31,19 +37,4 @@ public class Role {
         this.roleId = roleId;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 }
