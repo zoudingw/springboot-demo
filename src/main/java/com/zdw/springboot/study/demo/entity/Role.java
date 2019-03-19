@@ -20,14 +20,19 @@ public class Role {
     @GeneratedValue()
     private Integer roleId;
 
-    @Column(name = "user_id")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "UserRole",joinColumns = {@JoinColumn(name = "roleId")},inverseJoinColumns = {@JoinColumn(name ="userId" )})
     private List<User> users;
 
     private String roleName;
 
+    @ManyToMany
+    @JoinTable(name = "RoleRitht",joinColumns = {@JoinColumn(name = "roleId")},inverseJoinColumns = {@JoinColumn(name = "rightId")})
+    private List<Right> rights;
+
     private String desc;
 
-    private Boolean avaliable;
+    private Boolean avaliable = Boolean.FALSE;
 
     public Integer getRoleId() {
         return roleId;
