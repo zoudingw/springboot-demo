@@ -13,9 +13,11 @@ public class User {
 
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
     private Integer userId;
 
-    @Column(unique = true)
+
+    @Column(name = "user_name",unique = true)
     private String userName;
 
     private  String salt;
@@ -23,7 +25,6 @@ public class User {
     private byte state;
 
     private String password;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name ="UserRole",joinColumns = {@JoinColumn(name = "userId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
     private List<Role> roleList;
@@ -31,4 +32,5 @@ public class User {
     private  String addr;
 
     private Date birthday;
+
 }

@@ -4,8 +4,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 2233d
-    url: jdbc:mysql://10.82.13.208:3306/springboot_test
+    password: root
+    url: jdbc:mysql://localhost:3306/springboot_test?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
   jpa:
     hibernate:
       ddl-auto: update #自动根据实体类创建和跟新数据库

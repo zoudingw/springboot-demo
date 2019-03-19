@@ -15,18 +15,20 @@ import java.util.List;
  */
 @Entity
 @Data
-public class Right {
+public class MyRight {
     @Id
     @GeneratedValue
     private Integer rightId;
 
+
     private  String rightName;
 
-    @Column(columnDefinition = "enum('menu','button')")
-    private String resourceType;
+   @Column(columnDefinition = "enum('menu','button')")
+   private String resourceType;
 
     private String url;
     @ManyToMany
-    @JoinTable(name = "RoleRitht",joinColumns = {@JoinColumn(name = "rightId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
+    @JoinTable(name = "RoleRight",joinColumns = {@JoinColumn(name = "rightId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
     private List<Role> roles;
+
 }

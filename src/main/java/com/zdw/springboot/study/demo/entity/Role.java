@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 public class Role {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private Integer roleId;
 
     @ManyToMany
@@ -27,19 +27,11 @@ public class Role {
     private String roleName;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "RoleRitht",joinColumns = {@JoinColumn(name = "roleId")},inverseJoinColumns = {@JoinColumn(name = "rightId")})
-    private List<Right> rights;
+    @JoinTable(name = "RoleRight",joinColumns = {@JoinColumn(name = "roleId")},inverseJoinColumns = {@JoinColumn(name = "rightId")})
+    private List<MyRight> rights;
 
-    private String desc;
+    private String description;
 
     private Boolean avaliable = Boolean.FALSE;
-
-    public Integer getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
 
 }
