@@ -26,7 +26,7 @@ public class Right {
     private String resourceType;
 
     private String url;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "RoleRitht",joinColumns = {@JoinColumn(name = "rightId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
     private List<Role> roles;
 }
