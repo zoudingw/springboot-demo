@@ -28,7 +28,7 @@ public class SystemController {
     }
     @RequestMapping({"/","/index"})
     public String index(){
-        return"/index";
+        return"/upload";
     }
 
     @RequestMapping("/403")
