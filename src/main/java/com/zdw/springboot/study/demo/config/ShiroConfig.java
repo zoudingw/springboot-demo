@@ -1,7 +1,12 @@
 package com.zdw.springboot.study.demo.config;
 
+import com.zdw.springboot.study.demo.entity.MyShiroRealm;
+import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,9 +25,36 @@ public class ShiroConfig {
         filterChain.put("/logout", "logout");
         filterChain.put("/**", "authc");
         factoryBean.setLoginUrl("/login");
-        factoryBean.setSuccessUrl("index");
-        factoryBean.setUnauthorizedUrl("403");
+        factoryBean.setSuccessUrl("/index");
+        factoryBean.setUnauthorizedUrl("/403");
         factoryBean.setFilterChainDefinitionMap(filterChain);
         return factoryBean;
     }
+
+    @Bean
+    Realm realm(){
+        return new MyShiroRealm();
+    }
+
+    @Bean
+    SecurityManager securityManager(){
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(realm());
+        return securityManager;
+    }
+
+    /*
+     * @author zoudw
+     * @param [securityManager]
+     * @return org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor
+     * @date 2019/3/20
+     * @description :开启授权注解扫瞄
+      */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
+    }
+
 }

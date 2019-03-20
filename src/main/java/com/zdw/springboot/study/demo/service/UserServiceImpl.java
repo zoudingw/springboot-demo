@@ -25,6 +25,7 @@ public class UserServiceImpl implements IUserService{
         return userDao.updateUsernameByUserId(name,id);
     }
 
+    @Transactional
     public User getUserByUserName(String name){
         User user = userDao.findByUserNameLike(name);
         return user;
