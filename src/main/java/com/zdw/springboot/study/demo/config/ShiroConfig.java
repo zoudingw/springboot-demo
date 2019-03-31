@@ -1,7 +1,6 @@
 package com.zdw.springboot.study.demo.config;
 
 import com.zdw.springboot.study.demo.entity.MyShiroRealm;
-import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -24,7 +23,7 @@ public class ShiroConfig {
         filterChain.put("/static/**", "anon");
         filterChain.put("/logout", "logout");
         filterChain.put("/**", "anon");
-       // filterChain.put("/**", "authc");
+        // filterChain.put("/**", "authc");
         factoryBean.setLoginUrl("/login");
         factoryBean.setSuccessUrl("/upload");
         factoryBean.setUnauthorizedUrl("/403");
@@ -50,7 +49,7 @@ public class ShiroConfig {
      * @return org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor
      * @date 2019/3/20
      * @description :开启授权注解扫瞄
-      */
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();

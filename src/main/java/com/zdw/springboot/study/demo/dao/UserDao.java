@@ -1,7 +1,6 @@
 package com.zdw.springboot.study.demo.dao;
 
 import com.zdw.springboot.study.demo.entity.User;
-import com.zdw.springboot.study.demo.service.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

@@ -1,7 +1,5 @@
 package com.zdw.springboot.study.demo.service;
 
-import com.zdw.springboot.study.demo.entity.User;
-
 /**
  * Author:zoudw
  * Since:JDK 7

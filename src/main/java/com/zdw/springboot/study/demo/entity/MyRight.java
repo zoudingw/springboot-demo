@@ -1,7 +1,6 @@
 package com.zdw.springboot.study.demo.entity;
 
-import lombok.Data;
-import org.hibernate.annotations.Proxy;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +13,8 @@ import java.util.List;
  *
  * @Copyright:2018, zoudw@szinfinova.com All Rights Reserved
  */
-@Entity
 @Data
+@Entity
 public class MyRight {
     @Id
     @GeneratedValue
@@ -31,5 +30,12 @@ public class MyRight {
     @ManyToMany
     @JoinTable(name = "RoleRight",joinColumns = {@JoinColumn(name = "rightId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
     private List<Role> roles;
+
+    public MyRight() {
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof MyRight;
+    }
 
 }

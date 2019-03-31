@@ -8,10 +8,28 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: 2233d
-    url: jdbc:mysql://10.82.13.208:3306/springboot_test?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    password: 123456
+    url: jdbc:mysql://localhost:3306/springboot-test?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
   jpa:
     hibernate:
       ddl-auto: update #自动根据实体类创建和跟新数据库
     show-sql: true #实现sql打印
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect #设置搜索引擎
+info:
+  app:
+    name: springbootTest
+    version: 1.0.0
+    test: test
+
+
+management:
+  endpoints:
+    web:
+      base-path: '/minotor'  #修改监控端口默认路径为monitor
+      exposure:
+        include: '*'  #开放所有监控断点
+  endpoint:
+    health:
+      show-details: always #展示所有的断点的展示细节
+    shutdown:
+      enabled: true #启用应用断点来终止应用的运行
