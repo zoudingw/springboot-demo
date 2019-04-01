@@ -1,6 +1,5 @@
 package com.zdw.springboot.study.demo.controller;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
          * @return
          */
         @RequestMapping("/add")
-        @RequiresPermissions("user:add")//权限管理;
+      //  @RequiresPermissions("user:add")//权限管理;
         public String userInfoAdd(){
             return "userAdd";
         }
@@ -41,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
          * @return
          */
         @RequestMapping("/delete")
-        @RequiresPermissions("user:delete")//权限管理;
+     //   @RequiresPermissions("user:delete")//权限管理;
         public String userDel(){
             return "userDelete";
         }

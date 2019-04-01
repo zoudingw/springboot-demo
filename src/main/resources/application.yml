@@ -1,6 +1,10 @@
 server:
   port: 8089
 spring:
+  servlet:
+    multipart:
+      max-file-size: 1024MB #最大文件上传的大小
+      max-request-size: 1024MB #最大文件请求的大小
   mvc:
     view:
       prefix: /templates/

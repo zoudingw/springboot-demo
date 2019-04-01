@@ -21,11 +21,11 @@ public class DemoApplication {
      * @date 2019/3/20
      * @description :设置长传文件的最大值,不设置的话sprongboot默认是10M
       */
-    @Bean
+    /*@Bean
     public MultipartConfigElement config(){
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setMaxFileSize("100MB");
         factory.setMaxRequestSize("100MB");
         return factory.createMultipartConfig();
-    }
+    }*/
 }

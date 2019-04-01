@@ -1,8 +1,9 @@
 package com.zdw.springboot.study.demo.service;
 
 import com.zdw.springboot.study.demo.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface IUserService {
+public interface IUserService extends UserDetailsService {
 
     public int updateUserNameById(String name,Long id);
 
