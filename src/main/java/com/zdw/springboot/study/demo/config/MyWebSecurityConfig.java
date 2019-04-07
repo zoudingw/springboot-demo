@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
@@ -25,18 +27,19 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserDetailsService userDetailsService;
+    UserDetailsService userDetailsServiceImpl;
 
     @Bean
     PasswordEncoder passwordEncoder(){
-        return  new StandardPasswordEncoder();
+        return  new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+       auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(passwordEncoder());
     }
 
     @Override

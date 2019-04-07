@@ -1,22 +1,22 @@
 package com.zdw.springboot.study.demo.dao;
 
 import com.zdw.springboot.study.demo.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import io.micrometer.core.instrument.Meter;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+@Mapper
+public interface UserDao{
+    User selectByPrimaryKey(Integer userId);
 
-public interface UserDao extends JpaRepository<User,Long> {
-    User findByUserId(Long id);
+    User getByName(String userName);
 
-    User findByUserNameLike(String name);
+    int deleteByPrimaryKey(Integer userId);
 
-    List<User> findTop3ByOrderByUserIdDesc();
+    int insertUser(User user);
 
-    @Modifying
-    @Query("update User u set u.userName = ?1 where u.userId = ?2")
-    int updateUsernameByUserId(String name,Long id);
+    int insertSelective(User user);
 
+    int updateByPrimaryKeySelective(User user);
 
 }

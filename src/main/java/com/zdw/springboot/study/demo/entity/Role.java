@@ -1,8 +1,8 @@
 package com.zdw.springboot.study.demo.entity;
 
-import lombok.*;
+import lombok.Data;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,21 +14,13 @@ import java.util.List;
  * @Copyright:2018, zoudw@szinfinova.com All Rights Reserved
  */
 @Data
-@Entity
-public class Role {
-    @Id
-    @GeneratedValue
+public class Role implements Serializable {
     private Integer roleId;
 
-    @ManyToMany
-    @JoinTable(name = "UserRole",joinColumns = {@JoinColumn(name = "roleId")},inverseJoinColumns = {@JoinColumn(name ="userId" )})
     private List<User> users;
-
 
     private String roleName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "RoleRight",joinColumns = {@JoinColumn(name = "roleId")},inverseJoinColumns = {@JoinColumn(name = "rightId")})
     private List<MyRight> rights;
 
     private String description;
@@ -36,10 +28,6 @@ public class Role {
     private Boolean avaliable = Boolean.FALSE;
 
     public Role() {
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof Role;
     }
 
 }

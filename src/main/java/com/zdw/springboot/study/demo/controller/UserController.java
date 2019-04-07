@@ -1,7 +1,10 @@
 package com.zdw.springboot.study.demo.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.security.RolesAllowed;
 
 /**
  * Author:zoudw
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
          * @return
          */
         @RequestMapping("/view")
+        @PreAuthorize("hasRole('admin')")
        // @RequiresPermissions("user:view")//权限管理;
         public String userInfo(){
             return "user"  ;
@@ -30,7 +34,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
          * @return
          */
         @RequestMapping("/add")
-      //  @RequiresPermissions("user:add")//权限管理;
+       // @RolesAllowed("ADMIN")
+        @PreAuthorize("hasRole('USER')")
+        //  @RequiresPermissions("user:add")//权限管理;
         public String userInfoAdd(){
             return "userAdd";
         }

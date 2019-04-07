@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,66 +26,21 @@ import java.util.List;
  * @Copyright:2018, zoudw@szinfinova.com All Rights Reserved
  */
 @Service("userDetailsService")
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     UserDao userDao;
 
-    @Transactional
-    public int updateUserNameById(String name,Long id){
-        return userDao.updateUsernameByUserId(name,id);
+
+    @Override
+    public int updateUserNameById(String name, Long id) {
+        return 0;
     }
 
-    @Transactional
     public User getUserByUserName(String name){
-        User user = userDao.findByUserNameLike(name);
+        User user = userDao.getByName(name);
         return user;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userDao.findByUserNameLike(s);
-        return new UserDetails() {
-            @Override
-            public Collection<? extends GrantedAuthority> getAuthorities() {
-                List<GrantedAuthority> list = new ArrayList<>();
-                for (Role role : user.getRoleList()) {
-                    GrantedAuthority authority = new SimpleGrantedAuthority(role.getRoleName());
-                    list.add(authority);
-                }
-                return list;
-            }
-
-            @Override
-            public String getPassword() {
-                return user.getPassword();
-            }
-
-            @Override
-            public String getUsername() {
-                return user.getUserName();
-            }
-
-            @Override
-            public boolean isAccountNonExpired() {
-                return false;
-            }
-
-            @Override
-            public boolean isAccountNonLocked() {
-                return false;
-            }
-
-            @Override
-            public boolean isCredentialsNonExpired() {
-                return false;
-            }
-
-            @Override
-            public boolean isEnabled() {
-                return false;
-            }
-        };
-        }
 }
 

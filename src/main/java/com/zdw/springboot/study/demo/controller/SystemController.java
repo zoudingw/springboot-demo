@@ -26,11 +26,11 @@ public class SystemController {
         map.put("msg",attribute);
         return "login";
     }
-    @RequestMapping({"/","/index"})
+    /*@RequestMapping({"/","/index"})
     public String index(){
         return"/upload";
     }
-
+*/
     @RequestMapping("/403")
     public String unauthorizedRole(){
         System.out.println("------没有权限-------");

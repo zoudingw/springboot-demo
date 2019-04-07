@@ -1,5 +1,6 @@
 package com.zdw.springboot.study.demo.dao;
 
+import com.zdw.springboot.study.demo.entity.MyRight;
 import com.zdw.springboot.study.demo.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @Copyright:2018, zoudw@szinfinova.com All Rights Reserved
  */
 @Mapper
-public interface RoleDao {
-    Role selectByPrimaryKey(Integer roleId);
+public interface RightDao {
+    MyRight selectByPrimaryKey(Integer rightId);
 }

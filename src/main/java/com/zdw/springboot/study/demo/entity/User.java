@@ -1,20 +1,15 @@
 package com.zdw.springboot.study.demo.entity;
 
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 
-@Entity
-public class User {
+public class User implements Serializable {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "user_id")
     private Integer userId;
 
 
-    @Column(name = "user_name",unique = true)
     private String userName;
 
     private  String salt;
@@ -22,8 +17,6 @@ public class User {
     private byte state;
 
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name ="UserRole",joinColumns = {@JoinColumn(name = "userId")},inverseJoinColumns = {@JoinColumn(name = "roleId")})
     private List<Role> roleList;
 
     private  String addr;
